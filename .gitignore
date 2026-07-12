@@ -1,0 +1,22 @@
+node_modules
+.turbo
+.next
+dist
+build
+coverage
+.env
+.env.local
+.env.*
+.DS_Store
+package-lock.json
+# yarn.lock - MUST be committed for Yarn 4 --immutable in CI/CD
+.venv
+*.pyc
+__pycache__/
+*.tsbuildinfo
+.pnpm-debug.log
+
+# PWA
+public/sw.js
+public/workbox-*.js
+public/worker-*.js

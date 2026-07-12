@@ -1,0 +1,45 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build outputs
+.next
+out
+dist
+build
+*.tsbuildinfo
+
+# Generated files
+.turbo
+.vercel
+
+# TypeScript declaration files (no linting needed)
+**/*.d.ts
+
+# Config files (no typed linting needed)
+*.config.ts
+*.config.js
+*.config.mjs
+vitest.config.ts
+next.config.js
+tailwind.config.ts
+postcss.config.js
+
+# Environment
+.env
+.env.*
+
+# Prisma
+prisma/migrations
+
+# Test auth page (as per web config)
+apps/web/app/auth-test/**
+
+# Utility scripts (not part of app code)
+fix-*.ts
+fix-*.js
+fix_*.py
+comprehensive-fix.js
+final-fix.py
+*.sh

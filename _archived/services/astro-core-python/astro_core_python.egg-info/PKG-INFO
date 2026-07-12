@@ -1,0 +1,80 @@
+Metadata-Version: 2.4
+Name: astro-core-python
+Version: 0.1.0
+Summary: FastAPI proxy for FreeAstrologyAPI with Jyotishya normalized responses
+Author: Jyotishya
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi<1,>=0.111.0
+Requires-Dist: uvicorn[standard]<1,>=0.30.0
+Requires-Dist: httpx<1,>=0.27.0
+Requires-Dist: pydantic-settings<3,>=2.4.0
+Provides-Extra: dev
+Requires-Dist: pytest<8,>=7.4.0; extra == "dev"
+Requires-Dist: respx<1,>=0.20.0; extra == "dev"
+
+# Astro Core Python (FreeAstrologyAPI Proxy)
+
+This FastAPI microservice proxies FreeAstrologyAPI.com and normalises the payloads into the schema consumed by Jyotishya's web apps. It keeps the Next.js API surface unchanged (`/api/horoscope/daily`, `/api/panchang/today`) so you can swap between open-source mocks and paid data sources by just updating `ASTRO_CORE_URL`.
+
+## Features
+
+- `GET /horoscope/daily`: fetches planetary snapshot data for a single sign and emits a `DailyHoroscopeResult` ready for LLM interpretation.
+- `GET /horoscope/daily/batch`: hydrates all twelve signs in parallel — perfect for the legacy grid that expects a keyed object.
+- `GET /panchang/today`: returns Panchang details mapped into Jyotishya's schema.
+- Normalised error responses, request/response logging, and timeout-aware httpx client.
+
+## Quick Start
+
+```bash
+cd services/astro-core-python
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+export FREE_API_BASE_URL=https://json.freeastrologyapi.com
+export FREE_API_KEY=your_api_key_here
+uvicorn freeastrology.main:app --host 0.0.0.0 --port 4001 --reload
+```
+
+By default the app listens on port `4001`, matching the existing `ASTRO_CORE_URL` (`http://localhost:4001/api/astro-core`). Point the Next.js environment variable to this service and the web app will start receiving FreeAstrologyAPI data.
+
+## Environment Variables
+
+- `FREE_API_BASE_URL` *(required)* — default `https://json.freeastrologyapi.com`.
+- `FREE_API_KEY` *(required)* — grab this from your FreeAstrologyAPI account.
+- `DEFAULT_LOCALE` *(optional, default `en`)* — fallback locale when a request omits it.
+- `DEFAULT_TIMEZONE` *(optional, default `Asia/Kolkata`)* — timezone used when callers omit it.
+- `DEFAULT_LATITUDE` / `DEFAULT_LONGITUDE` *(optional)* — fallback coordinates in degrees.
+- `APP_PORT` *(optional, default `4001`)* — HTTP port.
+
+Create a `.env` file in this directory for convenience:
+
+```dotenv
+FREE_API_BASE_URL=https://json.freeastrologyapi.com
+FREE_API_KEY=your_api_key_here
+DEFAULT_LOCALE=en
+DEFAULT_TIMEZONE=Asia/Kolkata
+DEFAULT_LATITUDE=28.6139
+DEFAULT_LONGITUDE=77.2090
+APP_PORT=4001
+```
+
+## Health Check
+
+```
+GET /healthz
+```
+
+Returns `{ "status": "ok", "source": "freeastrologyapi-proxy" }` when the service is ready.
+
+## Tests
+
+```bash
+pytest
+```
+
+## Migration Path
+
+1. Deploy this proxy alongside your existing NestJS astro-core (or replace it entirely).
+2. Point `ASTRO_CORE_URL` in the Next.js app to `http://localhost:4001`.
+3. If you adopt another commercial API later, update the `freeastrology` client implementation while preserving the response contracts.

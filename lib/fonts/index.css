@@ -1,0 +1,27 @@
+/*
+  Shared fonts package index.css
+  This pulls in Roboto weight 300 via @fontsource so apps can import
+  the package and get the fonts bundled in their build (served from same origin).
+*/
+
+@import "@fontsource/roboto/300.css";
+
+/* Utility class you can use across apps to apply Roboto */
+.font-roboto {
+  font-family:
+    "Roboto",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+
+:root {
+  --font-roboto: "Roboto", sans-serif;
+}

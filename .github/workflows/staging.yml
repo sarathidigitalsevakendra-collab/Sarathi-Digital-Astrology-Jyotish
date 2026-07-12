@@ -1,0 +1,159 @@
+name: Staging Deployment CI/CD
+
+on:
+  push:
+    branches:
+      - staging
+  pull_request:
+    branches:
+      - staging
+
+env:
+  NODE_VERSION: "18"
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+jobs:
+  # Job 1: Code Quality Checks
+  lint:
+    name: ESLint & TypeScript Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run ESLint
+        run: yarn workspace @digital-astrology/web lint
+        continue-on-error: true # Warnings allowed
+
+      - name: Run TypeScript type check
+        run: npm run type-check
+
+  # Job 2: Build Test
+  build:
+    name: Production Build Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: lint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build project
+        run: CI=true npm run build
+        env:
+          # Build-time environment variables (non-sensitive)
+          NEXT_PUBLIC_SITE_URL: https://digital-astrology-staging.vercel.app
+          NEXT_PUBLIC_RAZORPAY_KEY_ID: ${{ secrets.NEXT_PUBLIC_RAZORPAY_KEY_ID }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: |
+            apps/web/.next
+            apps/web/public
+          retention-days: 7
+
+  # Job 3: Deployment Summary
+  deployment-summary:
+    name: Generate Deployment Summary
+    runs-on: ubuntu-latest
+    needs: [lint, build]
+    if: github.ref == 'refs/heads/staging'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for commit messages
+
+      - name: Get commit metadata
+        id: metadata
+        run: |
+          echo "commit_hash=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "commit_message=$(git log -1 --pretty=%B | head -1)" >> $GITHUB_OUTPUT
+          echo "author=$(git log -1 --pretty=%an)" >> $GITHUB_OUTPUT
+          echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
+      - name: Create deployment summary
+        run: |
+          echo "## 🚀 Staging Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`staging\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`${{ steps.metadata.outputs.commit_hash }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Author:** ${{ steps.metadata.outputs.author }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** ${{ steps.metadata.outputs.date }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Commit Message" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.metadata.outputs.commit_message }}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. ✅ Code quality checks passed" >> $GITHUB_STEP_SUMMARY
+          echo "2. ✅ Production build successful" >> $GITHUB_STEP_SUMMARY
+          echo "3. 🔄 Vercel deployment in progress..." >> $GITHUB_STEP_SUMMARY
+          echo "4. ⏳ Run smoke tests: \`./scripts/smoke-tests.sh <staging-url>\`" >> $GITHUB_STEP_SUMMARY
+          echo "5. 📊 Monitor Sentry: https://sentry.io" >> $GITHUB_STEP_SUMMARY
+          echo "6. 💳 Test Razorpay: https://dashboard.razorpay.com" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Monitoring URLs" >> $GITHUB_STEP_SUMMARY
+          echo "- **Vercel:** https://vercel.com/dashboard" >> $GITHUB_STEP_SUMMARY
+          echo "- **Sentry:** https://sentry.io" >> $GITHUB_STEP_SUMMARY
+          echo "- **Razorpay:** https://dashboard.razorpay.com" >> $GITHUB_STEP_SUMMARY
+
+  # Job 4: Notify on Failure
+  notify-failure:
+    name: Notify on Build Failure
+    runs-on: ubuntu-latest
+    needs: [lint, build]
+    if: failure()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create failure summary
+        run: |
+          echo "## ❌ Staging Deployment Failed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`staging\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`$(git rev-parse --short HEAD)\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Failure Reason" >> $GITHUB_STEP_SUMMARY
+          echo "One or more jobs failed. Check the workflow logs above." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Troubleshooting" >> $GITHUB_STEP_SUMMARY
+          echo "1. Review ESLint errors (if lint job failed)" >> $GITHUB_STEP_SUMMARY
+          echo "2. Review TypeScript errors (if lint job failed)" >> $GITHUB_STEP_SUMMARY
+          echo "3. Review build errors (if build job failed)" >> $GITHUB_STEP_SUMMARY
+          echo "4. Fix issues locally and push again" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Rollback Procedure" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+          echo "git checkout staging" >> $GITHUB_STEP_SUMMARY
+          echo "git reset --hard origin/staging~1" >> $GITHUB_STEP_SUMMARY
+          echo "git push -f origin staging" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

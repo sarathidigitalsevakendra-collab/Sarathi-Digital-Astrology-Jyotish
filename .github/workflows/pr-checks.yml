@@ -1,0 +1,175 @@
+name: PR Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  # ============================================================================
+  # PR METADATA VALIDATION
+  # ============================================================================
+  validate-pr:
+    name: Validate PR
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check PR title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            build
+            ci
+            chore
+            revert
+          requireScope: false
+
+      - name: Check PR size
+        run: |
+          FILES_CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | wc -l)
+          LINES_CHANGED=$(git diff --stat origin/${{ github.base_ref }}...HEAD | tail -1 | awk '{print $4+$6}')
+
+          echo "Files changed: $FILES_CHANGED"
+          echo "Lines changed: $LINES_CHANGED"
+
+          if [ "$FILES_CHANGED" -gt 50 ]; then
+            echo "::warning::PR modifies more than 50 files ($FILES_CHANGED). Consider splitting into smaller PRs."
+          fi
+
+          if [ "$LINES_CHANGED" -gt 1000 ]; then
+            echo "::warning::PR changes more than 1000 lines ($LINES_CHANGED). Consider splitting into smaller PRs."
+          fi
+
+  # ============================================================================
+  # DEPENDENCY REVIEW
+  # ============================================================================
+  dependency-review:
+    name: Review Dependencies
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        continue-on-error: true
+        with:
+          fail-on-severity: critical
+          comment-summary-in-pr: always
+          warn-only: false
+
+  # ============================================================================
+  # CHECK FOR SECRETS
+  # ============================================================================
+  secret-scan:
+    name: Scan for Secrets
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified
+
+  # ============================================================================
+  # CHECK CHANGED FILES
+  # ============================================================================
+  changed-files:
+    name: Detect Changed Files
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      web: ${{ steps.changes.outputs.web }}
+      admin: ${{ steps.changes.outputs.admin }}
+      services: ${{ steps.changes.outputs.services }}
+      packages: ${{ steps.changes.outputs.packages }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Detect changed files
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            web:
+              - 'apps/web/**'
+              - 'packages/**'
+            admin:
+              - 'apps/admin/**'
+              - 'packages/**'
+            services:
+              - 'services/**'
+            packages:
+              - 'packages/**'
+
+  # ============================================================================
+  # COMMENT PR WITH INFO
+  # ============================================================================
+  pr-info:
+    name: PR Information
+    needs: changed-files
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Comment PR with build info
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const changedAreas = [];
+            if ('${{ needs.changed-files.outputs.web }}' === 'true') changedAreas.push('Web App');
+            if ('${{ needs.changed-files.outputs.admin }}' === 'true') changedAreas.push('Admin App');
+            if ('${{ needs.changed-files.outputs.services }}' === 'true') changedAreas.push('Services');
+            if ('${{ needs.changed-files.outputs.packages }}' === 'true') changedAreas.push('Shared Packages');
+
+            const body = `## 🔍 PR Analysis
+
+            **Changed Areas:** ${changedAreas.join(', ') || 'None detected'}
+
+            **CI Status:** Running automated checks...
+            - ✅ Type checking
+            - ✅ Linting
+            - ✅ Tests
+            - ✅ Build validation
+            - ✅ Security scanning
+
+            Once all checks pass, this PR will be ready for review.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });

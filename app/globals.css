@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-cosmic-blue text-slate-100 antialiased;
+  background-attachment: fixed;
+}
+
+.gradient-title {
+  @apply text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400;
+}
+
+.shadow-astro {
+  box-shadow: 0 12px 32px -12px rgba(244, 201, 93, 0.35);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20px 20px, rgba(255, 255, 255, 0.15), transparent),
+    radial-gradient(1px 1px at 40px 60px, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1.5px 1.5px at 120px 80px, rgba(255, 255, 255, 0.12), transparent);
+  background-size: 160px 160px;
+  opacity: 0.35;
+  z-index: -1;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+  }
+  .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+}

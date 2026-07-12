@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+astro_core_python.egg-info/PKG-INFO
+astro_core_python.egg-info/SOURCES.txt
+astro_core_python.egg-info/dependency_links.txt
+astro_core_python.egg-info/requires.txt
+astro_core_python.egg-info/top_level.txt
+freeastrology/__init__.py
+freeastrology/client.py
+freeastrology/config.py
+freeastrology/main.py
+freeastrology/models.py
+freeastrology/translator.py

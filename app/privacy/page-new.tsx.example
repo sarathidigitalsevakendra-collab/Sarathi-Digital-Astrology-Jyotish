@@ -1,0 +1,142 @@
+import { Metadata } from "next";
+import {
+  LegalPageLayout,
+  LegalSection,
+  LegalSubsection,
+  LegalParagraph,
+  LegalList,
+  LegalCallout,
+  LegalTable,
+  LegalTableHead,
+  LegalTableBody,
+  LegalTableRow,
+  LegalTableHeader,
+  LegalTableCell,
+  LegalContactBox,
+  LegalFooter,
+  LegalLink,
+} from "@/components/legal/legal-page-layout";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Jyotishya",
+  description:
+    "How we collect, use, and protect your personal data in compliance with IT Act 2000 and GDPR",
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export default function PrivacyPolicyPage() {
+  return (
+    <LegalPageLayout title="Privacy Policy" effectiveDate="January 1, 2025">
+      <LegalSection title="1. Introduction">
+        <LegalParagraph>
+          Welcome to Jyotishya ("we," "our," or "us"). We are committed to protecting your
+          personal information and your right to privacy. This Privacy Policy explains how we
+          collect, use, disclose, and safeguard your information when you use our website and
+          mobile application (collectively, the "Service").
+        </LegalParagraph>
+
+        <LegalParagraph>
+          This Privacy Policy is designed to comply with the Information Technology Act, 2000 and
+          the Information Technology (Reasonable Security Practices and Procedures and Sensitive
+          Personal Data or Information) Rules, 2011, as well as the General Data Protection
+          Regulation (GDPR) for users in the European Economic Area.
+        </LegalParagraph>
+
+        <LegalCallout type="info" title="Important">
+          By using our Service, you agree to the collection and use of information in accordance
+          with this Privacy Policy.
+        </LegalCallout>
+      </LegalSection>
+
+      <LegalSection title="2. Information We Collect">
+        <LegalSubsection title="2.1 Personal Information">
+          <LegalList>
+            <li><strong>Account Data:</strong> Name, email address, phone number</li>
+            <li><strong>Birth Information:</strong> Date, time, and place of birth for chart generation</li>
+            <li><strong>Payment Information:</strong> Processed securely via Razorpay (we don't store card details)</li>
+          </LegalList>
+        </LegalSubsection>
+
+        <LegalSubsection title="2.2 Usage Data">
+          <LegalParagraph>
+            We automatically collect analytics data to improve our Service, including IP address,
+            browser type, and pages visited.
+          </LegalParagraph>
+        </LegalSubsection>
+      </LegalSection>
+
+      <LegalSection title="3. Third-Party Services">
+        <LegalParagraph>
+          We share your information with trusted third-party service providers:
+        </LegalParagraph>
+
+        <LegalTable>
+          <LegalTableHead>
+            <LegalTableRow>
+              <LegalTableHeader>Service</LegalTableHeader>
+              <LegalTableHeader>Purpose</LegalTableHeader>
+              <LegalTableHeader>Privacy Policy</LegalTableHeader>
+            </LegalTableRow>
+          </LegalTableHead>
+          <LegalTableBody>
+            <LegalTableRow>
+              <LegalTableCell>Supabase</LegalTableCell>
+              <LegalTableCell>Database & Authentication</LegalTableCell>
+              <LegalTableCell>
+                <LegalLink href="https://supabase.com/privacy">
+                  supabase.com/privacy
+                </LegalLink>
+              </LegalTableCell>
+            </LegalTableRow>
+            <LegalTableRow>
+              <LegalTableCell>Razorpay</LegalTableCell>
+              <LegalTableCell>Payment Processing</LegalTableCell>
+              <LegalTableCell>
+                <LegalLink href="https://razorpay.com/privacy">
+                  razorpay.com/privacy
+                </LegalLink>
+              </LegalTableCell>
+            </LegalTableRow>
+          </LegalTableBody>
+        </LegalTable>
+      </LegalSection>
+
+      <LegalSection title="12. Contact Us">
+        <LegalParagraph>
+          If you have any questions, concerns, or requests regarding this Privacy Policy or our
+          data practices, please contact us:
+        </LegalParagraph>
+
+        <LegalContactBox>
+          <p className="mb-2 text-white">
+            <strong>Jyotishya</strong>
+          </p>
+          <p className="mb-2 text-slate-300">
+            Email:{" "}
+            <LegalLink href="mailto:privacy@jyotishya.com">
+              privacy@jyotishya.com
+            </LegalLink>
+          </p>
+          <p className="text-slate-300">
+            Response Time: Within 48 hours for urgent privacy requests, 7 days for general inquiries
+          </p>
+        </LegalContactBox>
+      </LegalSection>
+
+      <LegalFooter>
+        <LegalParagraph>
+          This Privacy Policy was last updated on{" "}
+          {new Date().toLocaleDateString("en-IN", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+          and is effective from January 1, 2025.
+        </LegalParagraph>
+      </LegalFooter>
+    </LegalPageLayout>
+  );
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "turbo build --filter=@digital-astrology/admin",
+  "installCommand": "yarn install --immutable",
+  "framework": null,
+  "outputDirectory": "apps/admin/.next"
+}
