@@ -20,7 +20,7 @@ export function LocalBusinessSchema() {
       "longitude": 72.8497
     },
     "url": "https://www.jyotirvidya.app",
-    "telephone": "+919372148452",
+    "telephone": "+918369704457",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",

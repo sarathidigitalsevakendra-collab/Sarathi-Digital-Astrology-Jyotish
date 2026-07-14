@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       receipt: `receipt_plan_${Date.now()}`,
       notes: {
         userId: user.id,
-        plan: plan,
+        plan,
       }
     };
 

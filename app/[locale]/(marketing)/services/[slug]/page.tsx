@@ -79,6 +79,90 @@ const SERVICES_DATA: Record<string, { en: string; hi: string; docs: string; time
       'We support all standard formats: PDF, JPG, Word.',
       'Bulk printing and spiral binding are available.'
     ]
+  },
+  'shop-act-food-license': {
+    en: 'Shop Act & Food License',
+    hi: 'शॉप एक्ट और फूड लाइसेंस',
+    docs: 'Aadhaar, PAN, Photo, Rent Agreement / Light Bill',
+    time: '2-5 Days',
+    keywords: ['Shop act license Bhayandar', 'FSSAI food license', 'Gumasta license Thane'],
+    img: '/csc-posters/csc-services-5.jpg',
+    description: 'Legally register your shop or food business in Maharashtra. We assist with Shop Act (Gumasta) licenses and FSSAI Food Safety licenses for small and medium businesses.',
+    beforeVisit: [
+      'Ensure you have a valid rent agreement or property tax receipt.',
+      'For food businesses, a basic layout of the premises might be needed.',
+      'Aadhaar linked to mobile is mandatory.'
+    ]
+  },
+  'passport-rto-services': {
+    en: 'Passport & RTO Services',
+    hi: 'पासपोर्ट और आरटीओ सेवाएं',
+    docs: 'Aadhaar, PAN, School LC, Address Proof',
+    time: 'Varies by application',
+    keywords: ['Passport agent Bhayandar', 'RTO agent Thane', 'Driving license application'],
+    img: '/csc-posters/passport-pan.jpg',
+    description: 'We help with fresh passport applications, renewals, and basic RTO-related online applications like Learning Licenses and renewals in the local RTO jurisdiction.',
+    beforeVisit: [
+      'For passports, your name and DOB must perfectly match across all documents.',
+      'Bring your original 10th/12th passing certificate or School Leaving Certificate.',
+      'Appointments will be booked based on RTO / Passport Seva Kendra availability.'
+    ]
+  },
+  'banking-money-transfer': {
+    en: 'Banking & Money Transfer',
+    hi: 'बैंकिंग और मनी ट्रांसफर',
+    docs: 'Aadhaar / Account Details',
+    time: 'Instant',
+    keywords: ['Money transfer agent Bhayandar', 'Aadhaar ATM', 'Cash withdrawal CSC'],
+    img: '/csc-posters/banking.jpg',
+    description: 'Avail basic banking facilities right in your neighborhood. We offer domestic money transfers, Aadhaar Enabled Payment System (AePS) cash withdrawals, and deposits.',
+    beforeVisit: [
+      'For AePS cash withdrawal, your Aadhaar must be linked to your bank account.',
+      'Bring the exact IFSC code and account number for money transfers.',
+      'Daily limits apply as per RBI and banking guidelines.'
+    ]
+  },
+  'eshram-ayushman-card': {
+    en: 'E-Shram & Ayushman Card',
+    hi: 'ई-श्रम और आयुष्मान कार्ड',
+    docs: 'Aadhaar, Ration Card, Bank Passbook',
+    time: 'Instant / 1 Day',
+    keywords: ['Ayushman Bharat card Bhayandar', 'E-Shram registration', 'Health card CSC'],
+    img: '/csc-posters/ayushman.png',
+    description: 'Register for government welfare schemes. We help unorganized sector workers get their E-Shram cards and eligible families apply for the Ayushman Bharat PM-JAY health card.',
+    beforeVisit: [
+      'Check if your name is in the SECC-2011 database or you have a valid Antyodaya Ration Card for Ayushman.',
+      'Aadhaar linked mobile is required for OTP.',
+      'Bring your bank passbook for E-Shram registration.'
+    ]
+  },
+  'insurance-services': {
+    en: 'Insurance Services',
+    hi: 'बीमा सेवाएं',
+    docs: 'RC Book / Previous Policy for Auto, Aadhaar for Health/Life',
+    time: 'Instant',
+    keywords: ['Bike insurance Bhayandar', 'Car insurance agent', 'Health insurance CSC'],
+    img: '/csc-posters/insurance.jpg',
+    description: 'Protect your vehicles and family. We offer instant two-wheeler, four-wheeler, health, and life insurance policies from top providers at competitive premiums.',
+    beforeVisit: [
+      'For vehicle renewals, bring your old policy copy and RC book.',
+      'For health insurance, disclose any pre-existing medical conditions accurately.',
+      'Nominee details (Name, Age, Relation) are required.'
+    ]
+  },
+  'education-jobs-scholarship': {
+    en: 'Education, Jobs & Scholarships',
+    hi: 'शिक्षा, नौकरी और छात्रवृत्ति',
+    docs: 'Mark sheets, Aadhaar, Caste/Income Certificate',
+    time: 'Instant Application',
+    keywords: ['Online form filling Bhayandar', 'Scholarship form CSC', 'Government job forms'],
+    img: '/csc-posters/skill-india.jpg',
+    description: 'We assist students and job seekers in filling out online admission forms, government job applications, and MahaDBT scholarship forms accurately.',
+    beforeVisit: [
+      'Bring all your educational mark sheets and a passport size photo.',
+      'Your digital signature (can be signed on blank paper) will be scanned.',
+      'Make sure you have your Caste and Income certificates ready for scholarships.'
+    ]
   }
 };
 
@@ -94,7 +178,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: service.keywords,
     openGraph: {
       title: `${service.en} | Sarathi Digital Seva Kendra`,
-      description: `Fast and reliable ${service.en} in Bhayandar East. Call +91 93721 48452.`,
+      description: `Fast and reliable ${service.en} in Bhayandar East. Call +91 83697 04457.`,
       url: `${baseUrl}/${params.locale}/services/${params.slug}`,
       siteName: "Sarathi Digital Seva Kendra",
       images: [
@@ -121,7 +205,7 @@ export default async function ServicePage({ params: { locale, slug } }: Props) {
     notFound();
   }
 
-  const phone = "919372148452";
+  const phone = "918369704457";
   const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(`Hello Sarathi Digital Seva Kendra, I need help with ${service.en}`)}`;
 
   return (

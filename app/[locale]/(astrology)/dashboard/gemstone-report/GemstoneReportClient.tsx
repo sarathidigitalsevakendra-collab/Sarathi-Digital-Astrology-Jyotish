@@ -125,7 +125,7 @@ export default function GemstoneReportClient({ userId: _userId, userEmail: _user
       if (!res.ok) throw new Error("Failed to generate report");
       const data = await res.json() as GemstoneReport;
       setReport(data);
-    } catch (e) {
+    } catch (_e) {
       setError("Failed to generate gemstone report. Please try again.");
     } finally {
       setLoading(false);

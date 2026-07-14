@@ -224,7 +224,7 @@ export default function UpayClient() {
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all ${
                   activeCategory === cat ? "bg-purple-500 border-purple-400 text-white" : "bg-slate-800 border-white/10 text-slate-400 hover:text-white"
                 }`}>
-                {cat !== "All" && CATEGORY_EMOJI[cat as RemedyCategory]}{" "}{cat} {cat !== "All" && `(${displayedRemedies.filter(r => r.category === cat).length || report.allRemedies.filter(r => r.category === cat).length})`}
+                {cat !== "All" && CATEGORY_EMOJI[cat]}{" "}{cat} {cat !== "All" && `(${displayedRemedies.filter(r => r.category === cat).length || report.allRemedies.filter(r => r.category === cat).length})`}
               </button>
             ))}
           </div>

@@ -215,7 +215,7 @@ export default function CareerReportClient({ userId: _userId, userEmail: _userEm
 
       {/* AI Deep Analysis */}
       <AIInterpretationPanel
-        chartData={state.chartData!.data}
+        chartData={state.chartData.data}
         chartName={chartName}
         birthDetails={birthDetails}
         birthDate={state.birthData?.dateTime ? new Date(state.birthData.dateTime).toISOString().split("T")[0] : undefined}

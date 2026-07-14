@@ -333,7 +333,7 @@ export function generateVastuReport(
     // Find where user placed this room (if anywhere)
     let currentDir: FacingDirection | undefined;
     for (const [dir, rooms] of Object.entries(roomPlacements)) {
-      if ((rooms as RoomType[]).includes(room)) {
+      if ((rooms).includes(room)) {
         currentDir = dir as FacingDirection;
         break;
       }

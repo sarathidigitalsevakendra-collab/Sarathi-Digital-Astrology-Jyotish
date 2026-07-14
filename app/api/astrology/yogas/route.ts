@@ -134,8 +134,8 @@ function validateRequest(body: unknown): { valid: true; data: YogasRequestBody }
       latitude: candidate.latitude,
       longitude: candidate.longitude,
       timezone: candidate.timezone,
-      ascendant: candidate.ascendant as number | undefined,
-      planets: candidate.planets as PlanetInput[] | undefined,
+      ascendant: candidate.ascendant,
+      planets: candidate.planets,
     },
   };
 }

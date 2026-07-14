@@ -38,7 +38,7 @@ function SlotCard({ slot, rank }: { slot: MuhuratSlot; rank?: number }) {
   const [expanded, setExpanded] = useState(false);
   const q = QUALITY_CONFIG[slot.quality];
 
-  const dateObj = new Date(slot.date + "T00:00:00");
+  const dateObj = new Date(`${slot.date  }T00:00:00`);
   const dayName = dateObj.toLocaleDateString("en-IN", { weekday: "long" });
   const displayDate = dateObj.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
 

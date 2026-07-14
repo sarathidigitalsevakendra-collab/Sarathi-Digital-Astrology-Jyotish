@@ -22,7 +22,7 @@ export async function updateSession(request: NextRequest, response?: NextRespons
     });
   }
 
-  let supabaseResponse = response || NextResponse.next({
+  const supabaseResponse = response || NextResponse.next({
     request,
   });
 

@@ -88,7 +88,7 @@ export function calculateAscendant(date: Date, latitude: number, longitude: numb
   const numer = -Math.cos(lstRad);
   const denom = Math.sin(lstRad) * Math.cos(epsRad) + Math.tan(latRad) * Math.sin(epsRad);
   
-  let ascRad = Math.atan2(numer, denom);
+  const ascRad = Math.atan2(numer, denom);
   let ascDeg = ascRad * 180 / Math.PI;
   
   ascDeg = (ascDeg % 360 + 360) % 360;

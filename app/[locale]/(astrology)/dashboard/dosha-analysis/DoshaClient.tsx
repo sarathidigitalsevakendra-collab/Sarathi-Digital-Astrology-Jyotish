@@ -22,7 +22,7 @@ export default function DoshaAnalysisClient() {
   const [error, setError] = useState<string | null>(null);
   const [downloading, setDownloading] = useState(false);
 
-  const isValid = PLANET_FIELDS.slice(0, 9).every(p => planets[p] && !isNaN(parseFloat(planets[p]!)));
+  const isValid = PLANET_FIELDS.slice(0, 9).every(p => planets[p] && !isNaN(parseFloat(planets[p])));
 
   const handleSubmit = async () => {
     setLoading(true); setError(null);

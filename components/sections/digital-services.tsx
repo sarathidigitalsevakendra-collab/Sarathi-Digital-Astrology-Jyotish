@@ -6,7 +6,7 @@ import { Globe, MapPin, Smartphone, Mail, Rocket, Wrench, Building } from "lucid
 
 export default function DigitalServicesGrid(): React.ReactElement {
   const t = useTranslations("sarathi.digitalServices");
-  const phone = "919372148452";
+  const phone = "918369704457";
 
   const services = [
     {

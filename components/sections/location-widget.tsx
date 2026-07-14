@@ -26,7 +26,7 @@ export default function LocationWidget(): React.ReactElement {
           </div>
           <div className="space-y-2 text-slate-700">
             <p><strong className="text-blue-900">Hours:</strong> Mon–Sat 9:00 AM – 10:00 PM</p>
-            <p><strong className="text-blue-900">Phone:</strong> +91 93721 48452</p>
+            <p><strong className="text-blue-900">Phone:</strong> +91 83697 04457</p>
           </div>
         </div>
         <div className="h-[300px] w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 relative group">

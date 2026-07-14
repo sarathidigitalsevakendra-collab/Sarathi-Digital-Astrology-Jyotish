@@ -9,7 +9,7 @@ const QUICK_LINKS = [
 ];
 
 export default function Footer(): React.ReactElement {
-  const phone = "919372148452";
+  const phone = "918369704457";
   const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent("Hello Sarathi Kendra, I am looking for help with a digital service. Are you open today?")}`;
 
   return (
@@ -29,7 +29,7 @@ export default function Footer(): React.ReactElement {
             </div>
             <div className="flex items-center gap-3">
               <Phone className="w-5 h-5 text-orange-500 shrink-0" />
-              <span>+91 93721 48452</span>
+              <span>+91 83697 04457</span>
             </div>
           </div>
         </div>

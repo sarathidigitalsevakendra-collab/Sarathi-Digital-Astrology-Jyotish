@@ -30,7 +30,7 @@ export default function ShopInfoSection() {
                 </li>
                 <li className="flex gap-4 items-center">
                   <span className="text-orange-400 text-xl">📞</span>
-                  <span>+91 93721 48452</span>
+                  <span>+91 83697 04457</span>
                 </li>
                 <li className="flex gap-4 items-center">
                   <span className="text-orange-400 text-xl">🕒</span>

@@ -355,9 +355,9 @@ export function generateUpayReport(input: UpayInput): UpayReport {
   const activeDoshas = [hasSadeSati && "Sade Sati", hasKaalSarp && "Kaal Sarp", hasManglik && "Manglik Dosha"]
     .filter(Boolean).join(", ") || "none";
 
-  const summary = `Personalised remedies for ${currentMahadashaPlanet} Mahadasha` +
-    (currentAntardashaPlanet ? ` / ${currentAntardashaPlanet} Antardasha` : "") +
-    `. Active doshas: ${activeDoshas}. Follow High-priority remedies consistently for best results.`;
+  const summary = `Personalised remedies for ${currentMahadashaPlanet} Mahadasha${ 
+    currentAntardashaPlanet ? ` / ${currentAntardashaPlanet} Antardasha` : "" 
+    }. Active doshas: ${activeDoshas}. Follow High-priority remedies consistently for best results.`;
 
   return { dashaRemedy, moonSignRemedy, lagnaRemedy, doshaRemedy, generalWellbeing, allRemedies, topThree, summary };
 }

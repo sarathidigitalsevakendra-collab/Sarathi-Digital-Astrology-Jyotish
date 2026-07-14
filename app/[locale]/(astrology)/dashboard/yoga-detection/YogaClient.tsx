@@ -23,7 +23,7 @@ const STRENGTH_CONFIG = {
 
 function YogaCard({ yoga }: { yoga: Yoga }) {
   const type = YOGA_TYPE_CONFIG[yoga.type] ?? YOGA_TYPE_CONFIG.raja!;
-  const strength = STRENGTH_CONFIG[yoga.strength as keyof typeof STRENGTH_CONFIG] ?? STRENGTH_CONFIG.moderate;
+  const strength = STRENGTH_CONFIG[yoga.strength] ?? STRENGTH_CONFIG.moderate;
   return (
     <div className={`rounded-xl border p-4 ${type.border} ${type.bg}`}>
       <div className="flex items-start justify-between gap-2 mb-2">
@@ -61,7 +61,7 @@ export default function YogaDetectionClient() {
   const [downloading, setDownloading] = useState(false);
   const [activeType, setActiveType] = useState<string>("all");
 
-  const isValid = PLANET_FIELDS.every(p => planets[p] && !isNaN(parseFloat(planets[p]!))) && ascendant && !isNaN(parseFloat(ascendant));
+  const isValid = PLANET_FIELDS.every(p => planets[p] && !isNaN(parseFloat(planets[p]))) && ascendant && !isNaN(parseFloat(ascendant));
 
   const handleSubmit = async () => {
     setLoading(true); setError(null);
@@ -89,7 +89,7 @@ export default function YogaDetectionClient() {
       const lines = byType.flatMap(([type, yogas]) => [
         ``,
         `## ${YOGA_TYPE_CONFIG[type]?.label ?? type} (${yogas.length})`,
-        ...(yogas as Yoga[]).map(y => `**${y.name}** (${y.strength})\n${y.description}\n→ ${y.effect}`),
+        ...(yogas).map(y => `**${y.name}** (${y.strength})\n${y.description}\n→ ${y.effect}`),
       ]);
 
       const content = [
@@ -206,7 +206,7 @@ export default function YogaDetectionClient() {
 
           {/* Yoga cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {(displayedYogas as Yoga[]).map((yoga, i) => <YogaCard key={i} yoga={yoga} />)}
+            {(displayedYogas).map((yoga, i) => <YogaCard key={i} yoga={yoga} />)}
             {displayedYogas.length === 0 && (
               <p className="col-span-2 text-center text-slate-500 py-8">No yogas found in this category.</p>
             )}

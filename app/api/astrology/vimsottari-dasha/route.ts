@@ -113,8 +113,8 @@ function validateRequest(body: unknown): { valid: true; data: DashaRequestBody }
       latitude: candidate.latitude,
       longitude: candidate.longitude,
       timezone: candidate.timezone,
-      yearsToCalculate: candidate.yearsToCalculate as number | undefined,
-      moonLongitude: candidate.moonLongitude as number | undefined,
+      yearsToCalculate: candidate.yearsToCalculate,
+      moonLongitude: candidate.moonLongitude,
     },
   };
 }

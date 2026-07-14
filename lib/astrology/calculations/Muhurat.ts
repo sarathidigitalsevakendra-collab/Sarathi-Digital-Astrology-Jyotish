@@ -228,7 +228,7 @@ function computePanchang(date: Date): PanchangElements {
   const moonLon = moonLongitude(jd);
 
   // Tithi = (moonLon - sunLon) / 12, cycle 1-30
-  let tithiRaw = ((moonLon - sunLon + 360) % 360) / 12;
+  const tithiRaw = ((moonLon - sunLon + 360) % 360) / 12;
   const tithi = (Math.floor(tithiRaw) % 30) + 1;
 
   // Nakshatra = moonLon / (360/27), cycle 1-27

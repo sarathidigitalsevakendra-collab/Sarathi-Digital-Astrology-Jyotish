@@ -40,14 +40,14 @@ export default function ShopPage(): React.ReactElement {
             
             <div className="flex flex-wrap gap-4">
               <a 
-                href="tel:+919372148452"
+                href="tel:+918369704457"
                 className="inline-flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-3 font-semibold text-white transition hover:bg-orange-500 shadow-[0_0_15px_rgba(234,88,12,0.3)]"
               >
                 <Phone className="w-5 h-5" />
-                Call +91 93721 48452
+                Call +91 83697 04457
               </a>
               <a 
-                href={`https://wa.me/919372148452?text=${whatsappText}`}
+                href={`https://wa.me/918369704457?text=${whatsappText}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-6 py-3 font-semibold text-white transition hover:bg-[#22bf5b] shadow-[0_0_15px_rgba(37,211,102,0.3)]"

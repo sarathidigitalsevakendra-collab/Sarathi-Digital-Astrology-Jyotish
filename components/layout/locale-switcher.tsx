@@ -51,7 +51,7 @@ export default function LocaleSwitcher(): React.ReactElement {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-200 transition hover:bg-white/10 hover:text-white"
+        className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-blue-900"
         aria-label="Change language"
         aria-expanded={isOpen}
       >
@@ -69,7 +69,7 @@ export default function LocaleSwitcher(): React.ReactElement {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-40 rounded-lg border border-white/10 bg-[#0a0f1e]/95 backdrop-blur-xl shadow-xl">
+        <div className="absolute right-0 mt-2 w-40 rounded-lg border border-slate-200 bg-white shadow-xl z-50">
           <div className="p-1">
             {OPTIONS.map((option) => (
               <button
@@ -79,8 +79,8 @@ export default function LocaleSwitcher(): React.ReactElement {
                 className={clsx(
                   "flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm transition",
                   locale === option.code
-                    ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white"
-                    : "text-slate-200 hover:bg-white/10 hover:text-white",
+                    ? "bg-blue-50 text-blue-900 font-semibold"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-blue-900",
                 )}
               >
                 <span className="text-base">{option.icon}</span>

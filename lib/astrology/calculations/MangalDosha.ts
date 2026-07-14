@@ -60,7 +60,7 @@ export function calculateMangalDosha(
       description = "High Mangal Dosha detected (Present from both Lagna and Moon).";
     } else {
       score = 50;
-      description = "Partial Mangal Dosha detected (Present from " + (fromLagna ? "Lagna" : "Moon") + ").";
+      description = `Partial Mangal Dosha detected (Present from ${  fromLagna ? "Lagna" : "Moon"  }).`;
     }
 
     // 4. Check Exceptions (Simple Rule set for MVP)

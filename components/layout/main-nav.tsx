@@ -13,14 +13,20 @@ export default function MainNav(): React.ReactElement {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
-  const phone = "919372148452";
+  const phone = "918369704457";
   const whatsappUrl = `https://wa.me/${phone}`;
 
   const SERVICES = [
     { href: "/services/aadhaar-pan-voter", label: "Aadhaar / PAN / Voter ID" },
     { href: "/services/caste-income-domicile", label: "Certificates" },
-    { href: "/services/irctc-train-tickets", label: "IRCTC Tickets" },
-    { href: "/services/gst-msme-udyam", label: "GST / MSME" },
+    { href: "/services/irctc-train-tickets", label: "Travel Tickets" },
+    { href: "/services/gst-msme-udyam", label: "GST / MSME / Tax" },
+    { href: "/services/shop-act-food-license", label: "Shop Act & Food License" },
+    { href: "/services/passport-rto-services", label: "Passport & RTO" },
+    { href: "/services/banking-money-transfer", label: "Banking & Money Transfer" },
+    { href: "/services/eshram-ayushman-card", label: "Govt Cards & Schemes" },
+    { href: "/services/insurance-services", label: "Insurance Services" },
+    { href: "/services/education-jobs-scholarship", label: "Education & Jobs" },
     { href: "/services/printing-stationery", label: "Printing & Stationery" },
   ];
 
@@ -40,12 +46,14 @@ export default function MainNav(): React.ReactElement {
               Services <ChevronDown className="w-4 h-4" />
             </button>
             {servicesOpen && (
-              <div className="absolute top-full left-0 w-64 bg-white border border-slate-200 rounded-xl shadow-2xl py-2 flex flex-col z-50">
-                {SERVICES.map(service => (
-                  <Link key={service.href} href={service.href} className="px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-blue-900 transition-colors">
-                    {service.label}
-                  </Link>
-                ))}
+              <div className="absolute top-full left-0 w-[450px] bg-white border border-slate-200 rounded-xl shadow-2xl p-4 z-50">
+                <div className="grid grid-cols-2 gap-2">
+                  {SERVICES.map(service => (
+                    <Link key={service.href} href={service.href} className="px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-blue-900 transition-colors rounded-lg">
+                      {service.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </div>

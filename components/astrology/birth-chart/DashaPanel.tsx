@@ -99,7 +99,7 @@ export default function DashaPanel({ birthData, showHelp = false }: DashaPanelPr
           <div className="flex items-center gap-2">
             <span
               className="flex h-10 w-10 items-center justify-center rounded-full text-xl font-bold"
-              style={{ backgroundColor: PLANET_COLORS[dasha.currentMahadasha] + "40" }}
+              style={{ backgroundColor: `${PLANET_COLORS[dasha.currentMahadasha]  }40` }}
             >
               {PLANET_SYMBOLS[dasha.currentMahadasha]}
             </span>
@@ -112,7 +112,7 @@ export default function DashaPanel({ birthData, showHelp = false }: DashaPanelPr
           <div className="flex items-center gap-2">
             <span
               className="flex h-10 w-10 items-center justify-center rounded-full text-xl font-bold"
-              style={{ backgroundColor: PLANET_COLORS[dasha.currentAntardasha] + "40" }}
+              style={{ backgroundColor: `${PLANET_COLORS[dasha.currentAntardasha]  }40` }}
             >
               {PLANET_SYMBOLS[dasha.currentAntardasha]}
             </span>
@@ -150,7 +150,7 @@ export default function DashaPanel({ birthData, showHelp = false }: DashaPanelPr
             >
               <span
                 className="flex h-8 w-8 items-center justify-center rounded-full text-lg"
-                style={{ backgroundColor: PLANET_COLORS[maha.planet] + "30" }}
+                style={{ backgroundColor: `${PLANET_COLORS[maha.planet]  }30` }}
               >
                 {PLANET_SYMBOLS[maha.planet]}
               </span>

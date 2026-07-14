@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function SarathiHero(): React.ReactElement {
   const t = useTranslations("sarathi.hero");
-  const phone = "919372148452";
+  const phone = "918369704457";
   const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(t("whatsappText"))}`;
   const mapsUrl = "https://maps.google.com/?q=Sarathi+Digital+Seva+Kendra+Bhayandar+East";
 

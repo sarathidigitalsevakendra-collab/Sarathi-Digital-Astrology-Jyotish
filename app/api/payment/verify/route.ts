@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     const secret = process.env.RAZORPAY_KEY_SECRET || "yyyy";
     const generated_signature = crypto
       .createHmac("sha256", secret)
-      .update(razorpay_order_id + "|" + razorpay_payment_id)
+      .update(`${razorpay_order_id  }|${  razorpay_payment_id}`)
       .digest("hex");
 
     if (generated_signature !== razorpay_signature) {
@@ -39,13 +39,13 @@ export async function POST(req: NextRequest) {
           id: user.id,
           email: user.email,
           name: user.user_metadata?.full_name || "New User",
-          plan: plan,
+          plan,
         }
       });
     } else {
       await prisma.user.update({
         where: { id: user.id },
-        data: { plan: plan }
+        data: { plan }
       });
     }
 

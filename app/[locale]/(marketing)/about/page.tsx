@@ -29,7 +29,7 @@ export default function AboutPage() {
           <ul className="space-y-2 text-slate-600">
             <li>📍 Shop No.14, Rashmi Laxmi, Navghar Road</li>
             <li>🏙️ Bhayandar East, Thane 401105</li>
-            <li>📞 +91 93721 48452</li>
+            <li>📞 +91 83697 04457</li>
             <li>🕒 Mon–Sat: 9:00 AM – 10:00 PM</li>
           </ul>
           <div className="pt-4 border-t border-slate-100 mt-4">

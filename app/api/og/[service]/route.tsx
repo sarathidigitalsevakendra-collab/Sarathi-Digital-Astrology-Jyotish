@@ -92,7 +92,7 @@ export async function GET(
               📍 Shop No.14, Rashmi Laxmi, Bhayandar East
             </div>
             <div style={{ display: 'flex' }}>
-              📞 +91 93721 48452
+              📞 +91 83697 04457
             </div>
           </div>
         </div>

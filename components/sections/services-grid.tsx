@@ -7,7 +7,7 @@ import { MessageCircle, FileText, FileBadge, Briefcase, Printer, Clock, Car, Lan
 
 export default function ServicesGrid(): React.ReactElement {
   const t = useTranslations("sarathi.services");
-  const phone = "919372148452";
+  const phone = "918369704457";
 
   const services = [
     {

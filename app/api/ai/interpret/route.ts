@@ -164,7 +164,7 @@ The system analyzes *Shadbala* (planetary strength) and *Avasthas* (dignity) to 
     logger.info("AI interpret — real mode", { userId: user.id });
     
     const google = createGoogleGenerativeAI({
-        apiKey: apiKey,
+        apiKey,
     });
 
     // Build user message with enriched context (or fall back to raw JSON)

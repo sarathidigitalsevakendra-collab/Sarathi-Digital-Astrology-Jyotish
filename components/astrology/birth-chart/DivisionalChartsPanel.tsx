@@ -177,25 +177,25 @@ export default function DivisionalChartsPanel({
              <div className="flex justify-center rounded-xl bg-slate-900 p-8 shadow-inner">
                  {chartStyle === "north" ? (
                    <NorthIndianChart 
-                     planets={activeData!.planets!.map(p => ({
+                     planets={activeData.planets!.map(p => ({
                         name: p.name,
                         house: p.house || 1,
                         sign: p.sign || "",
                         degree: p.fullDegree,
                         isRetro: Boolean(p.isRetro)
                      }))}
-                     ascendantSign={Math.floor(activeData!.ascendant! / 30) + 1}
+                     ascendantSign={Math.floor(activeData.ascendant! / 30) + 1}
                    />
                  ) : (
                    <SouthIndianChart
-                     planets={activeData!.planets!.map(p => ({
+                     planets={activeData.planets!.map(p => ({
                         name: p.name,
                         house: p.house || 1,
                         sign: p.sign || "",
                         degree: p.fullDegree,
                         isRetro: Boolean(p.isRetro)
                      }))}
-                     ascendantSign={Math.floor(activeData!.ascendant! / 30) + 1}
+                     ascendantSign={Math.floor(activeData.ascendant! / 30) + 1}
                    />
                  )}
              </div>
