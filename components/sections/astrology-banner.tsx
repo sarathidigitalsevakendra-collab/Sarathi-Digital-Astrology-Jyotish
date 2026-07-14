@@ -10,14 +10,14 @@ export default function AstrologyBanner(): React.ReactElement {
 
   return (
     <section className="px-6 py-6 lg:px-16 max-w-4xl mx-auto mb-8">
-      <div className="relative rounded-2xl overflow-hidden bg-orange-50/50 border border-orange-100 p-6 md:p-8 text-center flex flex-col items-center">
+      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-200 shadow-md p-6 md:p-10 text-center flex flex-col items-center">
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 p-4 opacity-30">
-          <Sparkles className="w-12 h-12 text-orange-200" />
+        <div className="absolute top-0 right-0 p-4 opacity-50">
+          <Sparkles className="w-16 h-16 text-orange-300" />
         </div>
         
-        <h2 className="text-2xl font-semibold text-orange-900 mb-3 z-10">{t("title")}</h2>
-        <p className="text-base text-orange-900/70 max-w-xl mb-6 z-10">
+        <h2 className="text-3xl font-bold text-orange-950 mb-4 z-10">{t("title")}</h2>
+        <p className="text-lg text-orange-900 font-medium max-w-xl mb-8 z-10">
           {t("subtitle")}
         </p>
         

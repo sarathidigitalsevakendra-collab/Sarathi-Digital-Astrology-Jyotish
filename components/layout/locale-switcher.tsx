@@ -51,7 +51,7 @@ export default function LocaleSwitcher(): React.ReactElement {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-blue-900"
+        className="flex items-center gap-2 rounded-full border-2 border-slate-300 bg-white px-4 py-2 text-sm font-bold text-slate-800 shadow-sm transition-all hover:border-orange-400 hover:bg-orange-50 hover:text-orange-700"
         aria-label="Change language"
         aria-expanded={isOpen}
       >
