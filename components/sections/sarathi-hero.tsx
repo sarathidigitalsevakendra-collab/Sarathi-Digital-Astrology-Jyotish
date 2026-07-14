@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Button } from "@digital-astrology/ui";
 import { motion } from "framer-motion";
 import { MapPin, MessageCircle, CheckCircle } from "lucide-react";
 import Image from "next/image";
@@ -35,17 +34,23 @@ export default function SarathiHero(): React.ReactElement {
           </div>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <Button className="hover:scale-105 transition-transform duration-200 min-h-[48px] bg-[#25D366] hover:bg-[#128C7E] text-white flex items-center gap-2 shadow-sm px-6">
-                <MessageCircle className="w-5 h-5" />
-                {t("ctaPrimary")}
-              </Button>
+            <a 
+              href={whatsappUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] rounded-full font-semibold bg-[#25D366] hover:bg-[#128C7E] text-white shadow-sm hover:scale-105 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
+            >
+              <MessageCircle className="w-5 h-5" />
+              {t("ctaPrimary")}
             </a>
-            <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="secondary" className="hover:scale-105 transition-transform duration-200 min-h-[48px] bg-white border-2 border-slate-200 hover:border-blue-500 hover:bg-slate-50 text-slate-800 shadow-sm flex items-center gap-2 px-6">
-                <MapPin className="w-5 h-5 text-blue-600" />
-                {t("ctaSecondary")}
-              </Button>
+            <a 
+              href={mapsUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] rounded-full font-semibold bg-white border-2 border-slate-200 hover:border-blue-500 hover:bg-slate-50 text-slate-800 shadow-sm hover:scale-105 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            >
+              <MapPin className="w-5 h-5 text-blue-600" />
+              {t("ctaSecondary")}
             </a>
           </div>
         </motion.div>

@@ -66,20 +66,7 @@ const SERVICES_DATA: Record<string, { en: string; hi: string; docs: string; time
       'Keep a canceled cheque or bank statement ready for GST registration.'
     ]
   },
-  'printing-stationery': {
-    en: 'Printing, Photocopy & Stationery',
-    hi: 'प्रिंटिंग और स्टेशनरी',
-    docs: 'Bring files on Pen Drive or WhatsApp',
-    time: 'Instant',
-    keywords: ['Printing shop Bhayandar East', 'Color printout', 'Stationery shop Navghar Road'],
-    img: '/csc-posters/csc-services-2.jpg',
-    description: 'High-quality printing, color copies, scanning, and lamination services. We also stock essential office and school stationery right here on Navghar Road.',
-    beforeVisit: [
-      'You can WhatsApp us your documents ahead of time to save waiting.',
-      'We support all standard formats: PDF, JPG, Word.',
-      'Bulk printing and spiral binding are available.'
-    ]
-  },
+
   'shop-act-food-license': {
     en: 'Shop Act & Food License',
     hi: 'शॉप एक्ट और फूड लाइसेंस',

@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: blog.desc,
       images: [
         {
-          url: `https://www.jyotirvidya.app/api/og/printing-stationery`, // Fallback generic OG
+          url: `https://www.jyotirvidya.app/api/og/aadhaar-pan-voter`, // Fallback generic OG
           width: 1200,
           height: 630,
         },

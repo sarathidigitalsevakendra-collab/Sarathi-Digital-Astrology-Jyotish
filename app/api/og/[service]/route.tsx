@@ -12,7 +12,6 @@ export async function GET(
       'caste-income-domicile': { en: 'Certificates & Affidavits', hi: 'जाति / आय प्रमाण पत्र' },
       'irctc-train-tickets': { en: 'IRCTC Train & Tatkal Tickets', hi: 'ट्रेन और तत्काल टिकट' },
       'gst-msme-udyam': { en: 'GST & MSME Udyam', hi: 'जीएसटी पंजीकरण' },
-      'printing-stationery': { en: 'Printing & Stationery', hi: 'प्रिंटिंग और स्टेशनरी' },
       'astrology': { en: 'Jyotishya Astrology Services', hi: 'ज्योतिष सेवाएँ' }
     };
 

@@ -128,18 +128,10 @@
         "timeDesc": "Quick policy generation and renewals."
       },
       "education": {
-        "title": "🎓 Education & Job Forms",
-        "desc": "Get help filling out school/college admission forms, govt jobs, and scholarships.",
-        "docsDesc": "Provide all relevant educational marksheets, photos, and signatures.",
-        "timeDesc": "Forms are completed and submitted in-store."
-      },
-      "printing": {
-        "title": "🖨️ Printing & Stationery",
-        "desc": "High-quality color/B&W printouts, photocopies, lamination, and daily stationery.",
-        "docsDesc": "You can bring your files on a Pen Drive or send them directly to us on WhatsApp.",
-        "timeDesc": "Done on the spot at our center.",
-        "btnText": "Send File on WhatsApp",
-        "whatsappText": "Hello, I want to get some documents printed. I am sending the files here."
+        "title": "🎓 Education & Jobs",
+        "desc": "Assistance with scholarships, online admission forms, and government job applications.",
+        "docsDesc": "Mark sheets, Photo",
+        "timeDesc": "Instant application"
       }
     },
     "astrologyBanner": {

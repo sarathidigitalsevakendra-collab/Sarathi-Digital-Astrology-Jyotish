@@ -26,8 +26,7 @@ export default function MainNav(): React.ReactElement {
     { href: "/services/banking-money-transfer", label: "Banking & Money Transfer" },
     { href: "/services/eshram-ayushman-card", label: "Govt Cards & Schemes" },
     { href: "/services/insurance-services", label: "Insurance Services" },
-    { href: "/services/education-jobs-scholarship", label: "Education & Jobs" },
-    { href: "/services/printing-stationery", label: "Printing & Stationery" },
+    { href: "/services/education-jobs-scholarship", label: "Education & Jobs" }
   ];
 
   return (

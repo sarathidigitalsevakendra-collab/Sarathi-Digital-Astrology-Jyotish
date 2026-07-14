@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MessageCircle, FileText, FileBadge, Briefcase, Printer, Clock, Car, Landmark, CreditCard, GraduationCap, Plane, Shield, Store, UserCheck, Wallet } from "lucide-react";
+import { MessageCircle, FileText, FileBadge, Briefcase, Clock, Car, Landmark, CreditCard, GraduationCap, Plane, Shield, Store, UserCheck, Wallet } from "lucide-react";
 
 export default function ServicesGrid(): React.ReactElement {
   const t = useTranslations("sarathi.services");
@@ -93,13 +93,6 @@ export default function ServicesGrid(): React.ReactElement {
       slug: "education-jobs-scholarship",
       img: "/csc-posters/skill-india.jpg",
       alt: "Education and Job Forms"
-    },
-    {
-      id: "printing",
-      icon: <Printer className="w-8 h-8 text-blue-400" />,
-      slug: "printing-stationery",
-      img: "/csc-posters/csc-services-3.jpg",
-      alt: "Printing and Stationery"
     }
   ];
 

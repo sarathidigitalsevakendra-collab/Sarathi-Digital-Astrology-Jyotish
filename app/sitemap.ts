@@ -8,8 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'aadhaar-pan-voter',
     'caste-income-domicile',
     'irctc-train-tickets',
-    'gst-msme-udyam',
-    'printing-stationery'
+    'gst-msme-udyam'
   ];
 
   const rashis = [
