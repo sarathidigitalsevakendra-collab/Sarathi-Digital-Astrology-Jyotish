@@ -25,7 +25,7 @@
     "@ai-sdk/google": "^3.0.20",
     "@ai-sdk/openai": "^3.0.14",
     "@ai-sdk/react": "^3.0.47",
-    "@fontsource/roboto": "^5.2.9",
+    "@fontsource/roboto": "^5.2.10",
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "7.1.0",
     "@radix-ui/react-slot": "^1.2.4",
