@@ -33,7 +33,7 @@
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.86.0",
     "@tanstack/react-query": "^5.28.6",
-    "ai": "^6.0.45",
+    "ai": "^7.0.26",
     "astronomia": "^4.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.0",
