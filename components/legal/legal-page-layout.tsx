@@ -22,8 +22,8 @@ export function LegalPageLayout({
       <div className="max-w-none">
         {/* Page Header */}
         <header className="mb-12">
-          <h1 className="mb-6 text-4xl font-bold text-white lg:text-5xl">{title}</h1>
-          <p className="text-sm text-slate-400">
+          <h1 className="mb-6 text-4xl font-bold text-slate-900 lg:text-5xl">{title}</h1>
+          <p className="text-sm text-slate-500">
             <strong>Effective Date:</strong> {effectiveDate}
             <br />
             <strong>Last Updated:</strong>{" "}
@@ -53,7 +53,7 @@ interface LegalSectionProps {
 export function LegalSection({ title, children }: LegalSectionProps) {
   return (
     <section className="scroll-mt-20">
-      <h2 className="mb-4 text-2xl font-semibold text-white">{title}</h2>
+      <h2 className="mb-4 text-2xl font-semibold text-slate-900">{title}</h2>
       <div className="space-y-4">{children}</div>
     </section>
   );
@@ -70,7 +70,7 @@ interface LegalSubsectionProps {
 export function LegalSubsection({ title, children }: LegalSubsectionProps) {
   return (
     <div className="mt-6">
-      <h3 className="mb-3 text-xl font-semibold text-white">{title}</h3>
+      <h3 className="mb-3 text-xl font-semibold text-slate-900">{title}</h3>
       <div className="space-y-3">{children}</div>
     </div>
   );
@@ -80,21 +80,21 @@ export function LegalSubsection({ title, children }: LegalSubsectionProps) {
  * Paragraph component with consistent styling
  */
 export function LegalParagraph({ children }: { children: React.ReactNode }) {
-  return <p className="text-slate-300">{children}</p>;
+  return <p className="text-slate-700">{children}</p>;
 }
 
 /**
  * List component with consistent styling
  */
 export function LegalList({ children }: { children: React.ReactNode }) {
-  return <ul className="list-disc space-y-2 pl-6 text-slate-300">{children}</ul>;
+  return <ul className="list-disc space-y-2 pl-6 text-slate-700">{children}</ul>;
 }
 
 /**
  * Ordered list component
  */
 export function LegalOrderedList({ children }: { children: React.ReactNode }) {
-  return <ol className="list-decimal space-y-2 pl-6 text-slate-300">{children}</ol>;
+  return <ol className="list-decimal space-y-2 pl-6 text-slate-700">{children}</ol>;
 }
 
 /**
@@ -108,15 +108,15 @@ interface LegalCalloutProps {
 
 export function LegalCallout({ type = "info", title, children }: LegalCalloutProps) {
   const styles = {
-    info: "border-blue-500 bg-blue-500/10",
-    warning: "border-yellow-500 bg-yellow-500/10",
-    danger: "border-red-500 bg-red-500/10",
-    success: "border-green-500 bg-green-500/10",
+    info: "border-blue-500 bg-blue-50",
+    warning: "border-yellow-500 bg-yellow-50",
+    danger: "border-red-500 bg-red-50",
+    success: "border-green-500 bg-green-50",
   };
 
   return (
-    <div className={`rounded border-l-4 ${styles[type]} p-4 text-slate-300`}>
-      {title && <p className="mb-2 font-semibold text-white">{title}</p>}
+    <div className={`rounded border-l-4 ${styles[type]} p-4 text-slate-700`}>
+      {title && <p className="mb-2 font-semibold text-slate-900">{title}</p>}
       {children}
     </div>
   );
@@ -128,17 +128,17 @@ export function LegalCallout({ type = "info", title, children }: LegalCalloutPro
 export function LegalTable({ children }: { children: React.ReactNode }) {
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full border border-white/10">{children}</table>
+      <table className="min-w-full border border-slate-200">{children}</table>
     </div>
   );
 }
 
 export function LegalTableHead({ children }: { children: React.ReactNode }) {
-  return <thead className="bg-white/5">{children}</thead>;
+  return <thead className="bg-slate-50">{children}</thead>;
 }
 
 export function LegalTableBody({ children }: { children: React.ReactNode }) {
-  return <tbody className="text-slate-300">{children}</tbody>;
+  return <tbody className="text-slate-700">{children}</tbody>;
 }
 
 export function LegalTableRow({ children }: { children: React.ReactNode }) {
@@ -146,18 +146,18 @@ export function LegalTableRow({ children }: { children: React.ReactNode }) {
 }
 
 export function LegalTableHeader({ children }: { children: React.ReactNode }) {
-  return <th className="border border-white/10 px-4 py-2 text-left text-white">{children}</th>;
+  return <th className="border border-slate-200 px-4 py-2 text-left text-slate-900">{children}</th>;
 }
 
 export function LegalTableCell({ children }: { children: React.ReactNode }) {
-  return <td className="border border-white/10 px-4 py-2">{children}</td>;
+  return <td className="border border-slate-200 px-4 py-2">{children}</td>;
 }
 
 /**
  * Contact box component
  */
 export function LegalContactBox({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-lg border border-white/10 bg-white/5 p-6">{children}</div>;
+  return <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">{children}</div>;
 }
 
 /**
@@ -165,7 +165,7 @@ export function LegalContactBox({ children }: { children: React.ReactNode }) {
  */
 export function LegalFooter({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mt-12 border-t border-white/10 pt-8 text-sm text-slate-400">{children}</div>
+    <div className="mt-12 border-t border-slate-200 pt-8 text-sm text-slate-500">{children}</div>
   );
 }
 
@@ -174,7 +174,7 @@ export function LegalFooter({ children }: { children: React.ReactNode }) {
  */
 export function LegalLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} className="text-blue-400 hover:underline">
+    <a href={href} className="text-blue-600 hover:underline">
       {children}
     </a>
   );

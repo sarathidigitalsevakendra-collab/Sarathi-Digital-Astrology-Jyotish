@@ -1,25 +1,23 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-
-/**
- * Edge Runtime Middleware
- *
- * IMPORTANT: This middleware runs in Vercel Edge Runtime, which:
- * - Does NOT support Node.js APIs (__dirname, fs, path, etc.)
- * - Only supports Web Standard APIs (fetch, Request, Response, etc.)
- * - Cannot import @sentry/nextjs or any Node.js-specific packages
- */
-
+import createMiddleware from 'next-intl/middleware';
 import { updateSession } from './lib/supabase/middleware';
- 
- export function middleware(_request: NextRequest) {
-   try {
-     return updateSession(_request);
-  } catch (error) {
-    // Log error for Vercel monitoring (console.error is Edge-compatible)
-    console.error("[Middleware] Error:", error);
+import { locales } from './i18n';
 
-    // Return 500 response instead of crashing
+const intlMiddleware = createMiddleware({
+  locales,
+  defaultLocale: 'hi'
+});
+
+export async function middleware(request: NextRequest) {
+  try {
+    // 1. Run next-intl to get localized response (handles redirects and rewrites)
+    const response = intlMiddleware(request);
+
+    // 2. Pass to Supabase to handle auth session refresh within that response
+    return await updateSession(request, response);
+  } catch (error) {
+    console.error("[Middleware] Error:", error);
     return new NextResponse(JSON.stringify({ error: "Internal Server Error" }), {
       status: 500,
       headers: { "content-type": "application/json" },
@@ -31,5 +29,4 @@ export const config = {
   matcher: [
     "/((?!_next/static|_next/image|favicon.ico|api|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
-  // Note: Middleware automatically runs in Edge Runtime, no need to specify
 };

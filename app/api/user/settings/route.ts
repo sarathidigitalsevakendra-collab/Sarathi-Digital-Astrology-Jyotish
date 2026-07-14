@@ -7,6 +7,41 @@ import { AstrologySystem } from "@prisma/client";
 export const dynamic = "force-dynamic";
 
 /**
+ * GET /api/user/settings
+ * Get user settings (name, locale, preferredSystem, plan, etc.)
+ */
+export async function GET(_request: Request): Promise<NextResponse> {
+  try {
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const dbUser = await prisma.user.findFirst({
+      where: {
+        OR: [{ email: user.email || undefined }, { phone: user.phone || undefined }],
+      },
+    });
+
+    if (!dbUser) {
+      return NextResponse.json({ plan: "FREE" }, { status: 200 }); // Default
+    }
+
+    return NextResponse.json({ 
+      plan: dbUser.plan,
+      name: dbUser.name,
+      locale: dbUser.locale,
+      preferredSystem: dbUser.preferredSystem
+    }, { status: 200 });
+  } catch (error: unknown) {
+    console.error("Failed to fetch settings:", error);
+    return NextResponse.json({ error: "Failed to fetch settings" }, { status: 500 });
+  }
+}
+
+/**
  * PATCH /api/user/settings
  * Update user settings (name, locale, preferredSystem)
  */

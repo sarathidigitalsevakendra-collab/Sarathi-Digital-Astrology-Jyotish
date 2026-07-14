@@ -2,16 +2,19 @@
 
 import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
-import { useLocaleContext } from "@components/providers/intl-provider";
+import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 
 const OPTIONS = [
   { code: "en", label: "EN", icon: "🌐" },
   { code: "hi", label: "हिं", icon: "🇮🇳" },
-  { code: "ta", label: "தமிழ்", icon: "🇮🇳" },
+  { code: "mr", label: "मर", icon: "🇮🇳" },
 ] as const;
 
 export default function LocaleSwitcher(): React.ReactElement {
-  const { locale, setLocale } = useLocaleContext();
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -32,9 +35,14 @@ export default function LocaleSwitcher(): React.ReactElement {
     return undefined;
   }, [isOpen]);
 
-  const handleSelect = (code: "en" | "hi" | "ta") => {
-    setLocale(code);
+  const handleSelect = (code: string) => {
     setIsOpen(false);
+    if (!pathname) return;
+    const segments = pathname.split('/');
+    if (segments.length > 1) {
+      segments[1] = code;
+    }
+    router.push(segments.join('/'));
   };
 
   return (

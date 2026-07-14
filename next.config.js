@@ -48,6 +48,8 @@ const nextConfig = {
   },
 };
 
+const withNextIntl = require('next-intl/plugin')('./i18n.ts');
+
 const withPWA = require('next-pwa')({
   dest: 'public',
   register: true,
@@ -55,4 +57,4 @@ const withPWA = require('next-pwa')({
   disable: process.env.NODE_ENV === 'development',
 });
 
-module.exports = withPWA(nextConfig);
+module.exports = withNextIntl(withPWA(nextConfig));

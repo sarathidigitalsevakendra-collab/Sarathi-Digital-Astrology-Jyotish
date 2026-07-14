@@ -47,19 +47,32 @@ model User {
   birthTimeKnown   Boolean         @default(true)
   onboardingCompleted Boolean @default(false)
 
+  // Monetization & Referrals
+  plan             SubscriptionPlan @default(FREE)
+  referralCode     String?          @unique
+  referredBy       String?
+
   // Relations
-  accounts      Account[]
-  sessions      Session[]
-  kundlis       Kundli[]
-  consultations Consultation[]
-  orders        Order[]
-  favorites     Favorite[]
+  accounts         Account[]
+  sessions         Session[]
+  kundlis          Kundli[]
+  consultations    Consultation[]
+  orders           Order[]
+  favorites        Favorite[]
+  pushSubscriptions PushSubscription[]
 
   @@index([phone])
   @@index([email])
   @@index([role])
   @@index([onboardingCompleted])
+  @@index([referralCode])
   @@map("users")
+}
+
+enum SubscriptionPlan {
+  FREE
+  BASIC
+  PREMIUM
 }
 
 enum UserRole {
@@ -112,6 +125,22 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  endpoint  String   @unique
+  auth      String
+  p256dh    String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("push_subscriptions")
 }
 
 // ============================================================================

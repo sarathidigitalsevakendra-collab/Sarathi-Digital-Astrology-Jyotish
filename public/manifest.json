@@ -1,31 +1,21 @@
 {
-  "name": "Jyotishya - Vedic Astrology & Horoscope",
-  "short_name": "Jyotishya",
-  "description": "Premium Vedic astrology services, Kundli generation, and personalized horoscopes.",
+  "name": "Jyotishya Astrology",
+  "short_name": "ज्योतिष्य",
+  "description": "Your complete Vedic astrology and numerology service centre.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0F172A",
-  "theme_color": "#0F172A",
-  "orientation": "portrait",
+  "background_color": "#0a0f1e",
+  "theme_color": "#FF6B00",
   "icons": [
     {
-      "src": "/icons/icon-192x192.png",
+      "src": "/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
-    },
-    {
-      "src": "/icons/maskable-icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
     }
-  ],
-  "categories": ["lifestyle", "productivity", "social"],
-  "dir": "ltr",
-  "lang": "en-IN"
+  ]
 }

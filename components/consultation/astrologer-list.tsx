@@ -104,8 +104,8 @@ export default function AstrologerList({ initialAstrologers = [] }: AstrologerLi
       <div className="space-y-6">
         {/* Skeleton filters */}
         <div className="flex gap-4 mb-6">
-          <div className="h-10 w-32 rounded-lg bg-white/10 animate-pulse" />
-          <div className="h-10 w-36 rounded-lg bg-white/10 animate-pulse" />
+          <div className="h-10 w-32 rounded-lg bg-slate-200 animate-pulse" />
+          <div className="h-10 w-36 rounded-lg bg-slate-200 animate-pulse" />
         </div>
         {/* Skeleton grid */}
         <div className="grid gap-6 lg:grid-cols-2">
@@ -132,8 +132,8 @@ export default function AstrologerList({ initialAstrologers = [] }: AstrologerLi
     return (
       <div className="text-center py-12">
         <div className="text-6xl mb-4">🔮</div>
-        <h3 className="text-xl font-semibold text-white mb-2">No Astrologers Available</h3>
-        <p className="text-slate-300">Check back soon for expert consultations.</p>
+        <h3 className="text-xl font-semibold text-slate-900 mb-2">No Astrologers Available</h3>
+        <p className="text-slate-600">Check back soon for expert consultations.</p>
       </div>
     );
   }
@@ -142,10 +142,10 @@ export default function AstrologerList({ initialAstrologers = [] }: AstrologerLi
     <>
       {/* Success Message */}
       {bookingSuccess && (
-        <div className="mb-6 bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
+        <div className="mb-6 bg-green-50 border border-green-200 rounded-2xl p-6 text-center">
           <div className="text-4xl mb-3">✅</div>
-          <h3 className="text-xl font-semibold text-white mb-2">Booking Confirmed!</h3>
-          <p className="text-slate-300 mb-4">
+          <h3 className="text-xl font-semibold text-slate-900 mb-2">Booking Confirmed!</h3>
+          <p className="text-slate-600 mb-4">
             Your consultation has been successfully booked and payment confirmed.
           </p>
           {successConsultationId && (
@@ -183,7 +183,7 @@ export default function AstrologerList({ initialAstrologers = [] }: AstrologerLi
             subtitle={`${astrologer.experience} years • ₹${astrologer.hourlyRate}/hour`}
           >
             <div className="flex items-start gap-4">
-              <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-white/10 flex-shrink-0">
+              <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-slate-200 flex-shrink-0">
                 <Image
                   src={astrologer.imageUrl}
                   alt={astrologer.name}
@@ -191,26 +191,26 @@ export default function AstrologerList({ initialAstrologers = [] }: AstrologerLi
                   className="object-cover"
                 />
               </div>
-              <div className="space-y-2 text-xs text-orange-200 flex-grow">
+              <div className="space-y-2 text-xs text-slate-600 flex-grow">
                 <div className="flex flex-wrap gap-3">
                   <span>⭐ {astrologer.rating.toFixed(1)}</span>
                   <span className="flex items-center">
                     {astrologer.available ? (
-                       <span className="inline-flex items-center gap-1 rounded bg-green-500/10 px-2 py-0.5 text-xs text-green-400 border border-green-500/20">
+                       <span className="inline-flex items-center gap-1 rounded bg-green-50 px-2 py-0.5 text-xs text-green-700 border border-green-200">
                          ⏱️ 8 min wait
                        </span>
                     ) : (
-                       <span className="text-red-400 ml-1">Busy</span>
+                       <span className="text-red-500 ml-1">Busy</span>
                     )}
                   </span>
                   {astrologer.totalReviews > 0 && <span>{astrologer.totalReviews} reviews</span>}
                 </div>
-                <p className="text-[13px] text-slate-200">
+                <p className="text-[13px] text-slate-700">
                   Specialties: {astrologer.specialization.slice(0, 3).join(", ")}
                   {astrologer.specialization.length > 3 &&
                     ` +${astrologer.specialization.length - 3} more`}
                 </p>
-                <p className="text-[13px] text-slate-300">
+                <p className="text-[13px] text-slate-600">
                   Languages: {astrologer.languages.join(", ")}
                 </p>
               </div>
@@ -218,7 +218,7 @@ export default function AstrologerList({ initialAstrologers = [] }: AstrologerLi
 
             {/* Bio preview */}
             {astrologer.bio && (
-              <p className="mt-3 text-sm text-slate-300 line-clamp-2">{astrologer.bio}</p>
+              <p className="mt-3 text-sm text-slate-600 line-clamp-2">{astrologer.bio}</p>
             )}
 
             {/* Actions */}
@@ -240,7 +240,7 @@ export default function AstrologerList({ initialAstrologers = [] }: AstrologerLi
 
       {filteredAstrologers.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-slate-300">No astrologers match your filter.</p>
+          <p className="text-slate-600">No astrologers match your filter.</p>
         </div>
       )}
 

@@ -1,0 +1,191 @@
+{
+  "nav": {
+    "links": {
+      "home": "Home",
+      "consult": "Consult",
+      "dashboard": "Dashboard",
+      "match": "Matchmaking",
+      "transits": "Transits",
+      "reports": "Reports",
+      "shop": "Marketplace",
+      "store": "Store"
+    },
+    "actions": {
+      "signIn": "Sign In",
+      "book": "Book Muhurat"
+    }
+  },
+  "hero": {
+    "alert": "Shubh Muhurat alerts daily",
+    "title": "Decode your destiny with trusted Bharatiya astrology",
+    "description": "Personalised guidance for career, marriage, health and wealth from verified astrologers in Hindi & English.",
+    "primaryCta": "Generate Free Kundli",
+    "secondaryCta": "Consult Now",
+    "badge1": {
+      "title": "Acharya Anjali online",
+      "subtitle": "Free first 3 mins"
+    },
+    "badge2": {
+      "title": "Festival Panchang 2024",
+      "subtitle": "Ekadashi • Chaturthi • Ekam"
+    }
+  },
+  "consultation": {
+    "title": "Live astrologers, 24x7 guidance",
+    "description": "Connect instantly via chat, voice or video. Verified experts with ratings, language preference, and specialisation filters.",
+    "explore": "Explore Experts",
+    "book": "Book Muhurat"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language"
+  },
+  "sarathi": {
+    "hero": {
+      "title": "Fast Government & Digital Services in Bhayandar East",
+      "subtitle": "Sarathi Digital Seva Kendra is your trusted local shop for document applications, train tickets, and all everyday digital help.",
+      "address": "Shop No.14, Rashmi Laxmi, Navghar Road, Bhayandar East, Thane 401105",
+      "bullet1": "Walk-in service",
+      "bullet2": "WhatsApp support",
+      "bullet3": "Fast document help",
+      "bullet4": "Near Navghar Road",
+      "ctaPrimary": "Message on WhatsApp",
+      "ctaSecondary": "View location on Maps",
+      "whatsappText": "Hello Sarathi Kendra, I am looking for help with a digital service. Are you open today?"
+    },
+    "services": {
+      "title": "Our Services",
+      "docs": "Required Documents:",
+      "time": "Processing Time:",
+      "whatsapp": "Inquire on WhatsApp",
+      "aadhaar": {
+        "title": "🪪 Aadhaar Services",
+        "desc": "Reliable assistance with Aadhaar updates, demographic changes, and smart card printing.",
+        "docsDesc": "Bring your old Aadhaar card, valid ID proof, and address proof.",
+        "timeDesc": "Updates typically process based on UIDAI timelines.",
+        "whatsappText": "Hello, I need help with Aadhaar services. What are the requirements?"
+      },
+      "pan": {
+        "title": "💳 PAN Card Services",
+        "desc": "Apply for a new PAN card or request corrections safely and accurately.",
+        "docsDesc": "Provide your Aadhaar card and a recent passport-sized photograph.",
+        "timeDesc": "Standard processing times apply as per NSDL/UTIITSL guidelines.",
+        "whatsappText": "Hello, I need help applying for a PAN card."
+      },
+      "voter": {
+        "title": "✅ Voter ID & Verification",
+        "desc": "Apply for new Voter IDs, update addresses, and process online Police Clearance forms.",
+        "docsDesc": "Valid address proof, age proof, and a recent passport-sized photograph.",
+        "timeDesc": "Application submissions are quick; final approval depends on the department."
+      },
+      "certificates": {
+        "title": "📜 Government Certificates",
+        "desc": "Easy application processing for Caste, Income, Domicile, and other state certificates.",
+        "docsDesc": "Please provide a valid ration card, any old related certificates, and a photograph.",
+        "timeDesc": "Usually processed within a few weeks by local authorities.",
+        "whatsappText": "Hello, I need help applying for a certificate."
+      },
+      "govcards": {
+        "title": "🏛️ E-Shram & Ayushman",
+        "desc": "Enroll in government welfare schemes like E-Shram and Ayushman Bharat seamlessly.",
+        "docsDesc": "Bring your Aadhaar card, ration card, and bank account details.",
+        "timeDesc": "Fast enrollment subject to server availability."
+      },
+      "banking": {
+        "title": "💸 Banking & Money Transfer",
+        "desc": "Secure Aadhaar-enabled cash withdrawals and domestic money transfers.",
+        "docsDesc": "Please bring your Aadhaar card and linked mobile number.",
+        "timeDesc": "Quick and secure transaction processing."
+      },
+      "travel": {
+        "title": "🚆 Travel & Ticket Booking",
+        "desc": "Book confirmed train tickets (IRCTC), flights, and bus tickets for your journeys.",
+        "docsDesc": "Provide accurate passenger details along with a valid government ID proof.",
+        "timeDesc": "Immediate booking confirmation based on seat availability."
+      },
+      "business": {
+        "title": "📊 GST & Tax Filing",
+        "desc": "Professional assistance with GST registration, MSME Udyam, and Income Tax Returns.",
+        "docsDesc": "You must provide your PAN card, Aadhaar card, and current bank details.",
+        "timeDesc": "Prompt filing with official processing times varying by department.",
+        "whatsappText": "Hello, I want to inquire about GST Registration and ITR filing."
+      },
+      "licenses": {
+        "title": "🏪 Shop Act & Food Licenses",
+        "desc": "Get your business registered properly with Gumasta (Shop Act) and FSSAI Food Licenses.",
+        "docsDesc": "Bring your Aadhaar, PAN, photo, and shop rent agreement or electricity bill.",
+        "timeDesc": "Typically takes a few days for the department to issue the certificate."
+      },
+      "passport": {
+        "title": "🛂 Passport & RTO Services",
+        "desc": "Apply for fresh passports, renewals, and driving licenses with expert guidance.",
+        "docsDesc": "Provide your original address proof, educational certificates, and valid ID.",
+        "timeDesc": "We complete applications promptly; official scheduling varies."
+      },
+      "insurance": {
+        "title": "🛡️ Insurance Renewals",
+        "desc": "Protect your family and vehicles with health, life, and motor insurance renewals.",
+        "docsDesc": "Provide old policy papers, vehicle RC, and owner ID proof.",
+        "timeDesc": "Quick policy generation and renewals."
+      },
+      "education": {
+        "title": "🎓 Education & Job Forms",
+        "desc": "Get help filling out school/college admission forms, govt jobs, and scholarships.",
+        "docsDesc": "Provide all relevant educational marksheets, photos, and signatures.",
+        "timeDesc": "Forms are completed and submitted in-store."
+      },
+      "printing": {
+        "title": "🖨️ Printing & Stationery",
+        "desc": "High-quality color/B&W printouts, photocopies, lamination, and daily stationery.",
+        "docsDesc": "You can bring your files on a Pen Drive or send them directly to us on WhatsApp.",
+        "timeDesc": "Done on the spot at our center.",
+        "btnText": "Send File on WhatsApp",
+        "whatsappText": "Hello, I want to get some documents printed. I am sending the files here."
+      }
+    },
+    "astrologyBanner": {
+      "title": "Astrology Services",
+      "subtitle": "Looking for cosmic guidance? We also offer free Kundli, daily Panchang, and personalized horoscopes in a dedicated section of our Kendra.",
+      "cta": "Explore Astrology Services"
+    },
+    "digitalServices": {
+      "title": "Website & Digital Business Services",
+      "whatsapp": "Inquire on WhatsApp",
+      "webDev": {
+        "title": "🌐 Website & Landing Pages",
+        "desc": "Professional website development and fast landing page design to help your shop or business get online quickly and attract new customers.",
+        "whatsappText": "Hello, I want to inquire about Website Development & Landing Page Design."
+      },
+      "googleBiz": {
+        "title": "📍 Google Maps & Business Profile",
+        "desc": "Get your shop officially listed and verified on Google Maps so local customers in Bhayandar can easily find your location and hours.",
+        "whatsappText": "Hello, I want to inquire about getting my shop listed on Google Maps."
+      },
+      "socialMedia": {
+        "title": "📱 WhatsApp Business & Social Media",
+        "desc": "Setup of WhatsApp Business catalogs, automated replies, and professional Facebook/Instagram pages to connect with your customers directly.",
+        "whatsappText": "Hello, I want to inquire about WhatsApp Business and Social Media setup."
+      },
+      "domainHosting": {
+        "title": "📧 Domain, Hosting & Business Email",
+        "desc": "Secure your custom internet address (like yourshop.com), set up reliable web hosting, and create professional business email accounts.",
+        "whatsappText": "Hello, I want to inquire about Domain, Hosting, or Business Email setup."
+      },
+      "seo": {
+        "title": "🚀 Basic SEO & Online Visibility",
+        "desc": "Basic Search Engine Optimization (SEO) to help your website rank better when people search for your products or services on Google.",
+        "whatsappText": "Hello, I want to inquire about SEO and improving my online visibility."
+      },
+      "maintenance": {
+        "title": "🛠️ Website Maintenance & Forms",
+        "desc": "Monthly website updates, security checks, and custom online inquiry forms to easily capture leads from potential customers.",
+        "whatsappText": "Hello, I want to inquire about Website Maintenance and Online Forms."
+      },
+      "bizSetup": {
+        "title": "🏢 Complete Business Setup Support",
+        "desc": "End-to-end support including logo design, billing setup, and assistance with GST, MSME, Shop Act, and FSSAI registrations.",
+        "whatsappText": "Hello, I want to inquire about Complete Business Setup Support."
+      }
+    }
+  }
+}
+

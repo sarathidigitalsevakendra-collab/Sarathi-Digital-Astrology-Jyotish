@@ -3,141 +3,97 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@digital-astrology/ui";
 import clsx from "clsx";
 import LocaleSwitcher from "@components/layout/locale-switcher";
-import { useLocaleContext } from "@components/providers/intl-provider";
-import { useSupabaseAuth } from "@/hooks/use-supabase-auth";
-import UserDropdown from "@components/layout/user-dropdown";
-
-const LINKS = [
-  { href: "/", key: "home" },
-  { href: "/consultations", key: "consult" },
-  { href: "/matching", key: "match" },
-  { href: "/dashboard", key: "dashboard" },
-  { href: "/store", key: "store" },
-] as const;
+import { ChevronDown } from "lucide-react";
 
 export default function MainNav(): React.ReactElement {
   const pathname = usePathname();
-  const { copy } = useLocaleContext();
-  const { nav } = copy;
+  
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, loading } = useSupabaseAuth();
+  const [servicesOpen, setServicesOpen] = useState(false);
 
-  const renderLinks = (onClick?: () => void) => (
-    <nav className="flex flex-col gap-3 text-sm text-slate-200 md:flex-row md:items-center">
-      {LINKS.map((link) => {
-        const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href));
-        return (
-          <Link
-            key={link.href}
-            href={link.href}
-            onClick={onClick}
-            aria-current={isActive ? "page" : undefined}
-            className={clsx(
-              "relative px-4 py-2 text-sm font-medium transition-colors",
-              isActive
-                ? "text-orange-400"
-                : "text-slate-400 hover:text-white"
-            )}
-          >
-            {nav.links[link.key]}
-            {isActive && (
-              <span className="absolute bottom-0 left-1/2 h-0.5 w-1/2 -translate-x-1/2 bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.6)]" />
-            )}
-          </Link>
-        );
-      })}
-    </nav>
-  );
+  const phone = "919372148452";
+  const whatsappUrl = `https://wa.me/${phone}`;
+
+  const SERVICES = [
+    { href: "/services/aadhaar-pan-voter", label: "Aadhaar / PAN / Voter ID" },
+    { href: "/services/caste-income-domicile", label: "Certificates" },
+    { href: "/services/irctc-train-tickets", label: "IRCTC Tickets" },
+    { href: "/services/gst-msme-udyam", label: "GST / MSME" },
+    { href: "/services/printing-stationery", label: "Printing & Stationery" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-[#040713]/60 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-16">
-        <Link href="/" className="flex items-center gap-2 text-lg font-semibold text-orange-200">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-pink-500 text-lg text-white shadow-astro">
-            ज्यो
-          </span>
-          <span>Jyotishya</span>
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-16">
+        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-orange-500">
+          <span className="text-blue-900">Sarathi</span> Kendra
         </Link>
-        <div className="hidden md:flex md:items-center md:gap-5">
-          {renderLinks()}
-          <LocaleSwitcher />
-        </div>
-        <div className="hidden items-center gap-3 md:flex">
-          {!loading && (
-            <>
-              {user ? (
-                <UserDropdown user={user} />
-              ) : (
-                <>
-                  <Button variant="secondary" size="sm" asChild>
-                    <Link href="/auth/signin">{nav.actions.signIn}</Link>
-                  </Button>
-                  <Button size="sm" asChild>
-                    <Link href="/consultations">{nav.actions.book}</Link>
-                  </Button>
-                </>
-              )}
-            </>
-          )}
-        </div>
-        <button
-          type="button"
-          className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white md:hidden active:bg-white/20 transition-colors"
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileMenuOpen}
-        >
-          <span className="flex h-5 flex-col justify-between">
-            <span className={`block h-0.5 w-6 bg-white transition-transform duration-200 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block h-0.5 w-6 bg-white transition-opacity duration-200 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block h-0.5 w-6 bg-white transition-transform duration-200 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-          </span>
-        </button>
-      </div>
-      {mobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="space-y-4 border-t border-white/5 bg-[#050816]/95 px-6 py-6">
-            {renderLinks(() => setMobileMenuOpen(false))}
-            <LocaleSwitcher />
-            {!loading && (
-              <div className="flex flex-col gap-3">
-                {user ? (
-                  <div className="border-t border-white/10 pt-4">
-                    <p className="text-sm text-slate-400 mb-2">Signed in as</p>
-                    <p className="text-white font-medium mb-3">{user.email}</p>
-                    <div className="flex flex-col gap-2">
-                      <Button variant="secondary" size="sm" asChild>
-                        <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
-                          Dashboard
-                        </Link>
-                      </Button>
-                      <form action="/auth/signout" method="POST">
-                        <Button variant="secondary" size="sm" type="submit" className="w-full">
-                          Sign Out
-                        </Button>
-                      </form>
-                    </div>
-                  </div>
-                ) : (
-                  <>
-                    <Button variant="secondary" size="sm" asChild>
-                      <Link href="/auth/signin" onClick={() => setMobileMenuOpen(false)}>
-                        {nav.actions.signIn}
-                      </Link>
-                    </Button>
-                    <Button size="sm" asChild>
-                      <Link href="/consultations" onClick={() => setMobileMenuOpen(false)}>
-                        {nav.actions.book}
-                      </Link>
-                    </Button>
-                  </>
-                )}
+        <div className="hidden md:flex md:items-center md:gap-6">
+          <Link href="/" className={clsx("text-sm font-medium transition-colors", pathname === "/" || pathname === "/hi" || pathname === "/mr" ? "text-orange-500" : "text-slate-600 hover:text-blue-900")}>
+            Home
+          </Link>
+          
+          <div className="relative group" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+            <button className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-blue-900 py-2">
+              Services <ChevronDown className="w-4 h-4" />
+            </button>
+            {servicesOpen && (
+              <div className="absolute top-full left-0 w-64 bg-white border border-slate-200 rounded-xl shadow-2xl py-2 flex flex-col z-50">
+                {SERVICES.map(service => (
+                  <Link key={service.href} href={service.href} className="px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-blue-900 transition-colors">
+                    {service.label}
+                  </Link>
+                ))}
               </div>
             )}
           </div>
+
+          <Link href="/blog" className={clsx("text-sm font-medium transition-colors", pathname?.includes("/blog") ? "text-orange-500" : "text-slate-600 hover:text-blue-900")}>
+            Blog
+          </Link>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-600 hover:text-blue-900">
+            Contact
+          </a>
+          
+          <div className="pl-4 border-l border-slate-200">
+            <LocaleSwitcher />
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-4 md:hidden">
+          <LocaleSwitcher />
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 active:bg-slate-100 transition-colors"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+          >
+            <span className="flex h-4 flex-col justify-between">
+              <span className={`block h-0.5 w-5 bg-slate-600 transition-transform duration-200 ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+              <span className={`block h-0.5 w-5 bg-slate-600 transition-opacity duration-200 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 w-5 bg-slate-600 transition-transform duration-200 ${mobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+            </span>
+          </button>
+        </div>
+      </div>
+      
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-slate-200 bg-white/95 px-6 py-4 space-y-4">
+          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-600">Home</Link>
+          <div className="py-2">
+            <div className="text-blue-900 font-medium mb-2">Services</div>
+            <div className="pl-4 space-y-2 border-l border-slate-200 flex flex-col">
+              {SERVICES.map(service => (
+                <Link key={service.href} href={service.href} onClick={() => setMobileMenuOpen(false)} className="text-sm text-slate-500">
+                  {service.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-600">Blog</Link>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="block py-2 text-slate-600">Contact</a>
         </div>
       )}
     </header>
