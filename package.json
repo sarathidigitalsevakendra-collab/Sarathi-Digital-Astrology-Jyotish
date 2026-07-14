@@ -55,7 +55,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^10.1.0",
-    "semver": "^7.7.3",
+    "semver": "^7.8.5",
     "tailwindcss-typography": "^3.1.0",
     "vedic-astro": "^0.1.1",
     "web-push": "^3.6.7",
